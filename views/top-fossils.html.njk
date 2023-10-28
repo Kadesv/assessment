@@ -1,0 +1,25 @@
+
+{% extends 'base.html.njk' %}
+
+{% block title %}Most Liked Fossils{% endblock title %}
+
+{% block body %}
+<h1>Welcome, {{name}}</h1>
+  {% for fossil in fossils %}
+    <div class="fossil-div">
+      <h3>{{name}}, this is a {{ fossil.name }}</h3>
+      <h2>Liked {{ fossil.num_likes }} times.</h2>
+      <img src="{{fossil.img}}" />
+    </div>
+  {% endfor %}
+<h1>Select your favorite!</h1>
+<form action='/like-fossil'>
+  <select>
+    {%for fossil in fossils%}
+      <option value='{{fossil}}'>{{fossil.name}}</option>
+    {% endfor %}
+  </select>
+  <br>
+    <button type='submit'>Click Here to confirm</button>
+</form>
+{% endblock %}
